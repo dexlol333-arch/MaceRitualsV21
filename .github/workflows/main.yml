@@ -1,0 +1,21 @@
+name: Build
+on:
+  push:
+  workflow_dispatch:
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '21'
+      - name: Build
+        run: |
+          cd "$(dirname "$(find . -name pom.xml -not -path './.git/*' | head -n 1)")"
+          mvn -B package
+      - uses: actions/upload-artifact@v4
+        with:
+          name: MaceRituals
+          path: '**/target/MaceRituals.jar'
