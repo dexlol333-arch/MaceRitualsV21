@@ -1,0 +1,20 @@
+name: MaceRituals
+version: 1.0.0
+main: dev.maceritual.MaceRituals
+api-version: '1.21'
+description: Custom heavy cores from ominous vaults, crafted into ritual-forged maces.
+commands:
+  ritual:
+    description: MaceRituals admin command
+    usage: /ritual help
+    aliases: [maceritual]
+permissions:
+  maceritual.admin:
+    description: Manage arenas, give items, stop rituals
+    default: op
+  maceritual.use:
+    description: Craft cores into rituals
+    default: true
+  maceritual.bypass:
+    description: Ignore command and teleport blocks during a ritual
+    default: op

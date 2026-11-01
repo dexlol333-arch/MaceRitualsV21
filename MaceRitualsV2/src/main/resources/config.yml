@@ -1,0 +1,162 @@
+# ==========================================
+#  MaceRituals config   (colors use & codes)
+# ==========================================
+messages:
+  prefix: "&5&lRITUAL &8» "
+
+vault:
+  # Only ominous trial vaults can drop cores
+  require-ominous: true
+  # Chance PER VAULT OPENING that a core is added to the loot (0.02 = 2%)
+  chance: 0.02
+
+abilities:
+  # Can right-click abilities hurt other players?
+  hit-players: false
+
+arena:
+  default-radius: 20
+
+ritual:
+  # false = the ritual happens right where the player crafts it (no arena needed)
+  # true  = use arenas made with /ritual arena create
+  use-arenas: false
+  # Size of the ritual circle when use-arenas is false (players can't leave it)
+  radius: 15
+  # Tell the whole server who started a ritual and where
+  announce-start: true
+  announce-coords: true
+  # Also show it as a big on-screen title for every online player
+  announce-title: true
+  announce-fail: true
+  broadcast-on-success: true
+
+  countdown-seconds: 10
+  time-limit-seconds: 300
+  seconds-between-waves: 4
+  # Mob max health is multiplied by this
+  health-multiplier: 1.5
+  glowing-mobs: true
+  no-mob-drops: true
+  heal-on-start: true
+  # Keep inventory + XP if the player dies during the ritual
+  keep-inventory-on-death: true
+  # (arena mode only) respawn at the spot they started from
+  respawn-at-return: true
+  # Give the core back when a ritual fails (death/quit/timeout). Shutdown and /ritual stop always refund.
+  return-core-on-fail: false
+  # Commands usable during a ritual (players with maceritual.bypass ignore this)
+  allowed-commands: [msg, tell, w, r, reply]
+  # One entry per wave. Format  entity_type:count  (minecraft entity ids)
+  waves:
+    1: ["zombie:6", "skeleton:3"]
+    2: ["husk:6", "stray:4"]
+    3: ["blaze:3", "wither_skeleton:4"]
+    4: ["vindicator:5", "evoker:2", "breeze:2"]
+    5: ["wither_skeleton:6", "ravager:1"]
+
+# ------------------------------------------
+# Mace types. Each type has its own core, mace, passive effects and a
+# right-click ability.
+# ability types: FLAME_BURST, STORM_STRIKE, VOID_PULL  (or NONE)
+# enchants use minecraft enchantment ids, potions use  effect_id:ticks:amplifier
+# ------------------------------------------
+maces:
+  inferno:
+    weight: 50
+    core-name: "&6&lInferno Heavy Core"
+    core-lore:
+      - "&7A core still warm from the forge."
+      - ""
+      - "&eCraft with a Breeze Rod in your"
+      - "&einventory to begin the ritual."
+    mace-name: "&c&lInferno Crusher"
+    mace-lore:
+      - "&7Forged in a ritual of flame."
+      - ""
+      - "&6Passive: &7+2 damage, ignites targets"
+      - "&6Right-click: &cFlame Burst &7(15s cooldown)"
+      - "&7Blasts nearby enemies with fire."
+    enchants:
+      density: 5
+      fire_aspect: 2
+      unbreaking: 3
+      mending: 1
+    bonus-damage: 2.0
+    fire-seconds: 6
+    potions: ["weakness:100:0"]
+    lightning-chance: 0.0
+    shockwave-radius: 3.5
+    shockwave-damage: 4.0
+    ability:
+      type: FLAME_BURST
+      name: "&c&lFlame Burst"
+      cooldown: 15
+      radius: 6
+      damage: 8
+
+  tempest:
+    weight: 35
+    core-name: "&b&lTempest Heavy Core"
+    core-lore:
+      - "&7Crackles with trapped storms."
+      - ""
+      - "&eCraft with a Breeze Rod in your"
+      - "&einventory to begin the ritual."
+    mace-name: "&b&lTempest Hammer"
+    mace-lore:
+      - "&7Forged in a ritual of storms."
+      - ""
+      - "&bPassive: &715% chance to call lightning"
+      - "&bRight-click: &3Storm Strike &7(20s cooldown)"
+      - "&7Lightning on nearby foes and a wind gust."
+    enchants:
+      wind_burst: 3
+      density: 3
+      unbreaking: 3
+      mending: 1
+    bonus-damage: 1.0
+    fire-seconds: 0
+    potions: ["slowness:60:1"]
+    lightning-chance: 0.15
+    shockwave-radius: 4.0
+    shockwave-damage: 3.0
+    ability:
+      type: STORM_STRIKE
+      name: "&b&lStorm Strike"
+      cooldown: 20
+      radius: 8
+      damage: 7
+
+  voidbreaker:
+    weight: 15
+    core-name: "&5&lVoid Heavy Core"
+    core-lore:
+      - "&7Hums with an empty hunger."
+      - ""
+      - "&eCraft with a Breeze Rod in your"
+      - "&einventory to begin the ritual."
+    mace-name: "&5&lVoidbreaker"
+    mace-lore:
+      - "&7Forged in a ritual of the void."
+      - ""
+      - "&5Passive: &7+3 damage, withers and blinds"
+      - "&5Right-click: &dVoid Pull &7(25s cooldown)"
+      - "&7Drags enemies to you and withers them."
+    enchants:
+      breach: 4
+      density: 4
+      unbreaking: 3
+      mending: 1
+    bonus-damage: 3.0
+    fire-seconds: 0
+    potions: ["wither:80:1", "blindness:60:0"]
+    lightning-chance: 0.0
+    shockwave-radius: 3.0
+    shockwave-damage: 5.0
+    ability:
+      type: VOID_PULL
+      name: "&5&lVoid Pull"
+      cooldown: 25
+      radius: 10
+      damage: 6
